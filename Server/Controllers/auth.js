@@ -42,17 +42,13 @@ function ProcessRegisterPage(req, res, next) {
         if (err) {
             if (err.name == "UserExistsError") {
                 console.error('ERROR: User Already Exists!');
-                req.flash('registerMessage', 'Registration Error!');
             }
             else {
                 console.error(err.name);
-                req.flash('registerMessage', 'Server Error');
             }
-            return res.redirect('/register');
+            return res.json({ success: false, msg: 'Error: Registration Failed!' });
         }
-        return passport_1.default.authenticate('local')(req, res, function () {
-            return res.redirect('/movie-list');
-        });
+        return res.json({ success: true, msg: 'User Registered Succeffully' });
     });
 }
 exports.ProcessRegisterPage = ProcessRegisterPage;
