@@ -1,32 +1,14 @@
 import express from 'express';
 
 // need passport functionality
-import passport from 'passport';
+import passport, { authenticate } from 'passport';
 
 // need to include the User model for authentication functions
 import User from '../Models/user';
 
-// import the DisplayName Utility method
-import { UserDisplayName } from '../Util';
 
-// Display Functions
-export function DisplayLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
-{
-    if(!req.user)
-    {
-        return res.render('index', { title: 'Login', page: 'login', messages: req.flash('loginMessage'), displayName: UserDisplayName(req)});
-    }
-    return res.redirect('/movie-list');
-}
-
-export function DisplayRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction)
-{
-    if(!req.user)
-    {
-        return res.render('index', { title: 'Register', page: 'register', messages: req.flash('registerMessage'), displayName: UserDisplayName(req)});
-    }
-    return res.redirect('/movie-list');
-}
+// import the DisplayName and Generate Token Utility method
+import { UserDisplayName, GenerateToken } from '../Util';
 
 // Processing Functions
 export function ProcessLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
@@ -43,8 +25,8 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
     // are there login errors?
     if(!user)
     {
-        req.flash('loginMessage', 'Authentication Error!');
-        return res.redirect('/login');
+        
+        return res.json({success: false, msg: "Error: Authebtification failed"})
     }
 
     // no problems - we have a good username and password
@@ -57,8 +39,17 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
             res.end(err);
         }
 
-        return res.redirect('/movie-list');
+       const authToken = GenerateToken(user);
+   
+        return res.json({success: true, msg: "Logged In Succesffuly", user: {
+            id : user._id,
+            username: user.username,
+            DisplayName: user.DisplayName,
+            EmailAddres: user.EmailAddress
+        }, token: authToken})
+        
     });
+
    })(req, res, next);
 }
  
