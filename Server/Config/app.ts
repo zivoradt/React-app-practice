@@ -15,6 +15,11 @@ import flash from 'connect-flash';
 
 // modules for JWT support
 import cors from 'cors';
+import passportJWT from 'passport-jwt';
+
+// Define aliases - strategy and extract
+let JWTStrategy = passportJWT.Strategy;
+let ExtractJWT = passportJWT.ExtractJwt;
 
 // Step 2 for auth - define our auth objects
 let localStrategy = passportLocal.Strategy; // alias
@@ -70,6 +75,26 @@ app.use(flash());
 // Step 6 - initialize passport and session
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Setup JWT Options
+let jwtOption = {
+  jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken(),
+  secretOrKey : DBConfig.Secret
+}
+
+// Setup JWT Strategy
+let strategy = new JWTStrategy(jwtOption, function(jwt_payload, done){
+
+  User.findById(jwt_payload.id)
+  .then(user=>{
+    return done(user)
+  })
+  .catch(err =>{
+    return done(err, false);
+  })
+})
+
+passport.use(strategy);
 
 // Step 7 - implement the Auth Strategy
 passport.use(User.createStrategy());
