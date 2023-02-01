@@ -23,7 +23,6 @@ let localStrategy = passportLocal.Strategy; // alias
 import User from '../Models/user';
 
 // import the router data
-import indexRouter from '../Routes/index'; // top-level routes
 import movieListRouter from '../Routes/movie-list'; // movie-list routes
 import authRouter from '../Routes/auth'; // authentication routes
 
@@ -31,13 +30,13 @@ const app = express();
 
 // Complete the DB Configuration
 import * as DBConfig from './db';
-mongoose.connect(DBConfig.RemoteURI);
+mongoose.connect((DBConfig.RemoteURI) ? DBConfig.RemoteURI : DBConfig.LocalURI);
 const db = mongoose.connection; // alias for the mongoose connection
 
 // Listen for Connections or Errors
 db.on("open", function()
 {
-  console.log(`Connected to MongoDB at: ${DBConfig.HostName}`);
+  console.log(`Connected to MongoDB at: ${(DBConfig.RemoteURI) ? DBConfig.HostName : "Localhost"}`);
 });
 
 db.on("error", function()
@@ -80,9 +79,8 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // use routes
-app.use('/', indexRouter);
-app.use('/', movieListRouter);
-app.use('/', authRouter);
+app.use('/api', movieListRouter);
+app.use('/api', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) 

@@ -1,9 +1,9 @@
 {
-  "name": "comp229-m2022-week6",
+  "name": "zivoradt",
   "version": "0.0.5",
-  "description": "Demo Project for COMP229 in the Summer 2022 semester for Week 6",
+  "description": "Demo Project for React-app",
   "main": "server.js",
-  "author": "Tom Tsiliopoulos",
+  "author": "Zivorad Trickovic",
   "license": "MIT",
   "private": true,
   "scripts": {
