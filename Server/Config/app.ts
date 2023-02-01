@@ -87,7 +87,7 @@ let strategy = new JWTStrategy(jwtOption, function(jwt_payload, done){
 
   User.findById(jwt_payload.id)
   .then(user=>{
-    return done(user)
+    return done( user)
   })
   .catch(err =>{
     return done(err, false);
@@ -104,7 +104,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // use routes
-app.use('/api', movieListRouter);
+app.use('/api', passport.authenticate('jwt', {session: false}), movieListRouter);
 app.use('/api', authRouter);
 
 // catch 404 and forward to error handler

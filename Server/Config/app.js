@@ -88,7 +88,7 @@ passport_1.default.use(strategy);
 passport_1.default.use(user_1.default.createStrategy());
 passport_1.default.serializeUser(user_1.default.serializeUser());
 passport_1.default.deserializeUser(user_1.default.deserializeUser());
-app.use('/api', movie_list_1.default);
+app.use('/api', passport_1.default.authenticate('jwt', { session: false }), movie_list_1.default);
 app.use('/api', auth_1.default);
 app.use(function (req, res, next) {
     next((0, http_errors_1.default)(404));
