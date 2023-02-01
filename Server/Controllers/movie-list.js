@@ -11,7 +11,7 @@ function DisplayMovieList(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.json({ success: true, msg: 'Movie-list displayed syccessfully', movies: moviesCollection, user: req.user });
+        res.json({ success: true, msg: 'Movie-List Displayed Successfully', movies: moviesCollection, user: req.user });
     });
 }
 exports.DisplayMovieList = DisplayMovieList;
