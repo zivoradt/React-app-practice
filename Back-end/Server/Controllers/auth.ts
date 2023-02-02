@@ -40,6 +40,7 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
         }
 
        const authToken = GenerateToken(user);
+       
    
         return res.json({success: true, msg: "Logged In Succesffuly", user: {
             id : user._id,
