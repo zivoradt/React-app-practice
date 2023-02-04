@@ -11,6 +11,7 @@ import About from "./content/about";
 import Projects from "./content/projects";
 import Services from "./content/services";
 import Contact from "./content/contact";
+import Login from "./authentification/login";
 import PageNotFound from "./content/PageNotFound";
 
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
 
