@@ -24,7 +24,7 @@ class AuthServices
         return http.post('/register', {username, password, FirstName, LastName, EmailAddress})
     }
 
-    public getCurrentUser()
+    getCurrentUser()
     {
         const userString = localStorage.getItem("user") as string;
         if (userString) {

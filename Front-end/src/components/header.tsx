@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom';
+import AuthService from '../services/auth-service';
 
 function Header(){
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
+  useEffect(()=>{
+    setIsLoggedIn(AuthService.getCurrentUser());
+  });
+
+  function toggleLogin()
+  {
+    if(isLoggedIn)
+    {
+      return (<li className="nav-item">
+              <NavLink to={"/logout"} className="nav-link" aria-current="page"><i className="fa-solid fa-right-from-bracket fa-lg"></i> Logout</NavLink>
+            </li>)
+    }
+    else
+    {
+      return (<li className="nav-item">
+               <NavLink to={"/login"} className="nav-link" aria-current="page"><i className="fa-solid fa-right-to-bracket fa-lg"></i> Login</NavLink>
+             </li>)
+    }
+  }
+
+
+
 
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -31,7 +57,8 @@ function Header(){
               <li className="nav-item">
                 <NavLink to={"/contact"} className="nav-link" aria-current="page"><i className="fa-solid fa-envelopes-bulk fa-lg"></i> Contact</NavLink>
               </li>
-    
+
+              {toggleLogin()};
             </ul>
           </div>
         </div>

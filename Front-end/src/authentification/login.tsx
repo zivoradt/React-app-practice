@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import AuthService from "../services/authservice";
+import AuthService from "../services/auth-service";
 import UserModel from "../models/user";
 
 function Login()
