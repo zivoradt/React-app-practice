@@ -11,7 +11,7 @@ function DisplayMovieList(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.json({ success: true, msg: 'Movie-List Displayed Successfully', movies: moviesCollection, user: req.user });
+        res.json({ success: true, message: 'Movie-List Displayed Successfully', movies: moviesCollection, user: req.user });
     });
 }
 exports.DisplayMovieList = DisplayMovieList;
@@ -28,11 +28,11 @@ function ProccessAddPage(req, res, next) {
             res.end(err);
         }
     });
-    res.json({ success: true, msg: 'Movie Added Successfully', movies: newMovie });
+    res.json({ success: true, message: 'Movie Added Successfully', movies: newMovie });
 }
 exports.ProccessAddPage = ProccessAddPage;
 function DisplayAddPage(req, res, next) {
-    res.json({ success: true, msg: 'Add Page Displayed Successfully' });
+    res.json({ success: true, message: 'Add Page Displayed Successfully' });
 }
 exports.DisplayAddPage = DisplayAddPage;
 function DisplayEditPage(req, res, next) {
@@ -42,7 +42,7 @@ function DisplayEditPage(req, res, next) {
             console.error(err);
             res.end(err);
         }
-        res.json({ success: true, msg: 'Movie Add to Edit Successfully', movies: movieToEdit });
+        res.json({ success: true, message: 'Movie Add to Edit Successfully', movies: movieToEdit });
     });
 }
 exports.DisplayEditPage = DisplayEditPage;
@@ -60,7 +60,7 @@ function ProccessEditPage(req, res, next) {
             res.end(err);
         }
     });
-    res.json({ success: true, msg: 'Movie Edited Successfully', movies: updateMovie });
+    res.json({ success: true, message: 'Movie Edited Successfully', movies: updateMovie });
 }
 exports.ProccessEditPage = ProccessEditPage;
 function ProccessDeletePage(req, res, next) {
@@ -71,7 +71,7 @@ function ProccessDeletePage(req, res, next) {
             res.end(err);
         }
     });
-    res.json({ success: true, msg: 'Movie Deleted Successfully' });
+    res.json({ success: true, message: 'Movie Deleted Successfully' });
 }
 exports.ProccessDeletePage = ProccessDeletePage;
 //# sourceMappingURL=movie-list.js.map

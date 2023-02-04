@@ -7,12 +7,13 @@ function Login()
 {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate(); // aliase for useNavigate
 
 
     useEffect(()=>{
         document.title = "Login";
-    });
+    }, []);
 
     function onChangeUsername(event: ChangeEvent<HTMLInputElement>)
     {
@@ -22,6 +23,18 @@ function Login()
     function onChangePassword(event: ChangeEvent<HTMLInputElement>)
     {
         setPassword(event.target.value);
+    }
+
+    function handleMessage()
+    {
+        if(message.length > 0)
+        {
+            return(
+                <div className="alert alert-danger">
+                    {message}
+                </div>
+            );
+        }
     }
 
     function handleLogin(event:any)
@@ -40,14 +53,30 @@ function Login()
 
         // Use auth service to perform login
         AuthService.login(UserData.username, UserData.password)
-        .then(()=>{
+        .then((data)=>{
+            if(data.success)
+          {  
             // Navigate to the movie-list page
-            navigate("/home"); // same as res.redirect on backend
+            navigate("/home");   // same as res.redirect on backend
+            window.location.reload();
+        }
+        else
+        {
+            setMessage(data.message);
+            handleReset(null);
+        }
         }, error =>{
-            // Needs a replacment for flash messaging
+            setMessage("Server Error");
             window.location.reload();
         });
 
+    }
+
+    function handleReset(event:any)
+    {
+        setUsername('');
+        setPassword('');
+        
     }
 
     return(
@@ -57,8 +86,9 @@ function Login()
                 <div className="login" id="contentArea">
                     <h1 className="display-4">Login</h1>
 
+                    {handleMessage()}
 
-                    <form onSubmit={handleLogin} id="loginForm" >
+                    <form onSubmit={handleLogin} onReset= {handleReset} id="loginForm" >
                         <div className="form-group mb-2">
                         <div className="input-group">
                             <span className="input-group-addon">

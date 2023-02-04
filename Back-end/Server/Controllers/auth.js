@@ -14,7 +14,7 @@ function ProcessLoginPage(req, res, next) {
             res.end(err);
         }
         if (!user) {
-            return res.json({ success: false, msg: "Error: Authebtification failed" });
+            return res.json({ success: false, message: "Error: Authentification failed" });
         }
         req.logIn(user, function (err) {
             if (err) {
@@ -22,11 +22,11 @@ function ProcessLoginPage(req, res, next) {
                 res.end(err);
             }
             const authToken = (0, Util_1.GenerateToken)(user);
-            return res.json({ success: true, msg: "Logged In Succesffuly", user: {
+            return res.json({ success: true, message: "Logged In Succesffuly", user: {
                     id: user._id,
                     username: user.username,
                     DisplayName: user.DisplayName,
-                    EmailAddres: user.EmailAddress
+                    EmailAddress: user.EmailAddress
                 }, token: authToken });
         });
     })(req, res, next);
@@ -46,9 +46,9 @@ function ProcessRegisterPage(req, res, next) {
             else {
                 console.error(err.name);
             }
-            return res.json({ success: false, msg: 'Error: Registration Failed!' });
+            return res.json({ success: false, message: 'Error: Registration Failed!' });
         }
-        return res.json({ success: true, msg: 'User Registered Succeffully' });
+        return res.json({ success: true, message: 'User Registered Succeffully' });
     });
 }
 exports.ProcessRegisterPage = ProcessRegisterPage;
@@ -60,7 +60,7 @@ function ProcessLogoutPage(req, res, next) {
         }
         console.log("User Logged Out");
     });
-    res.json({ success: true, msg: 'Succesfuly Logged Out!' });
+    res.json({ success: true, message: 'Succesfuly Logged Out!' });
 }
 exports.ProcessLogoutPage = ProcessLogoutPage;
 //# sourceMappingURL=auth.js.map

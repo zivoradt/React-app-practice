@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Commont Componenets
@@ -16,6 +16,7 @@ import PageNotFound from "./content/PageNotFound";
 // Authentification components
 import Login from "./authentification/login";
 import Logout from "./authentification/logout";
+import Register from "./authentification/register";
 
 // Styles and fonts
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,7 +25,11 @@ import "./App.css";
 
 
 
+
 function App() {
+
+  
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -39,6 +44,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

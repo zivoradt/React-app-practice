@@ -26,7 +26,7 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
     if(!user)
     {
         
-        return res.json({success: false, msg: "Error: Authebtification failed"})
+        return res.json({success: false, message: "Error: Authentification failed"})
     }
 
     // no problems - we have a good username and password
@@ -42,11 +42,11 @@ export function ProcessLoginPage(req: express.Request, res: express.Response, ne
        const authToken = GenerateToken(user);
        
    
-        return res.json({success: true, msg: "Logged In Succesffuly", user: {
+        return res.json({success: true, message: "Logged In Succesffuly", user: {
             id : user._id,
             username: user.username,
             DisplayName: user.DisplayName,
-            EmailAddres: user.EmailAddress
+            EmailAddress: user.EmailAddress
         }, token: authToken})
         
     });
@@ -76,12 +76,12 @@ export function ProcessRegisterPage(req: express.Request, res: express.Response,
             {
                 console.error(err.name); // other error
             }
-            return res.json({success: false, msg: 'Error: Registration Failed!'})
+            return res.json({success: false, message: 'Error: Registration Failed!'})
         }
 
         // everything is ok - user has been registered
 
-        return res.json({success: true, msg: 'User Registered Succeffully'});
+        return res.json({success: true, message: 'User Registered Succeffully'});
     });
 }
 
@@ -98,7 +98,7 @@ export function ProcessLogoutPage(req: express.Request, res: express.Response, n
         console.log("User Logged Out");
     });
 
-    res.json({success: true, msg: 'Succesfuly Logged Out!'});
+    res.json({success: true, message: 'Succesfuly Logged Out!'});
 }
 
 
