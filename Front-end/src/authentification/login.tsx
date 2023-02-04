@@ -63,7 +63,7 @@ function Login()
         else
         {
             setMessage(data.message);
-            handleReset(null);
+            clearForm(null);
         }
         }, error =>{
             setMessage("Server Error");
@@ -72,10 +72,16 @@ function Login()
 
     }
 
-    function handleReset(event:any)
+    function clearForm(event:any)
     {
         setUsername('');
         setPassword('');
+    }
+
+    function handleReset(event:any)
+    {
+        clearForm(null);
+        setMessage('');
         
     }
 
