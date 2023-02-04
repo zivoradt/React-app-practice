@@ -15,6 +15,7 @@ function Register()
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [message, setMessage] = useState('');
     let navigate = useNavigate(); // alias for navigate
     
 
@@ -55,11 +56,46 @@ function Register()
             EmailAddress: EmailAddress
         }
         AuthService.register(UserData.username, UserData.password, UserData.FirstName, UserData.LastName, UserData.EmailAddress)
-        .then(()=>{
-           navigate("/login");
+        .then((data)=>{
+
+          if(data.success)
+           {
+            navigate("/login");
+           }
+           else
+           {
+              setMessage(data.message);
+              clearForm(null);
+           }
         }, error =>{
-            window.location.reload();
+            setMessage("Server Error!");
         })
+    }
+
+    function handleMessage()
+    {
+        if(message.length > 0)
+        {
+            return(
+                <div className="alert alert-danger">
+                    {message}
+                </div>
+            );
+        }
+    }
+
+    function clearForm(event:any)
+    {
+        setUsername('');
+        setPassword('');
+        setConfirmPassword('');
+    }
+
+    function handleReset(event:any)
+    {
+        clearForm(null);
+        setMessage('');
+        
     }
 
     return(
@@ -69,9 +105,9 @@ function Register()
                 <div className="login" id="contentArea">
                     <h1 className="display-4">Register</h1>
       
-                 
+                 {handleMessage()}
       
-                    <form onSubmit={handleRegistration} id="registerForm">
+                    <form onSubmit={handleRegistration} id="registerForm" onReset={handleReset}>
                       <p className="hint-text">Create your own account. It's free and only takes a minute.</p>
       
                       <div className="form-group">

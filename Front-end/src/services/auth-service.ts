@@ -22,6 +22,9 @@ class AuthServices
     public register(username:string, password:string, firstName: string, lastName: string, emailAddress:string)
     {
         return http.post('/register', {username, password, firstName, lastName, emailAddress})
+        .then(response =>{
+            return response.data;
+        })
     }
 
     getCurrentUser()
