@@ -89,6 +89,9 @@ function Register()
         setUsername('');
         setPassword('');
         setConfirmPassword('');
+        setEmailAddress('');
+        setFirstName('');
+        setLastName('');
     }
 
     function handleReset(event:any)
