@@ -13,45 +13,42 @@ import { UserDisplayName, GenerateToken } from '../Util';
 // Processing Functions
 export function ProcessLoginPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
-   passport.authenticate('local', function(err, user, info)
-   {
-    // are there server errors?
-    if(err)
-    {
-        console.error(err);
-        res.end(err);
-    }
+   passport.authenticate('local', function (err, user) {
+           // are there server errors?
+           if (err) {
+               console.error(err);
+               res.end(err);
+           }
 
-    // are there login errors?
-    if(!user)
-    {
-        
-        return res.json({success: false, message: "Error: Authentification failed"})
-    }
+           // are there login errors?
+           if (!user) {
 
-    // no problems - we have a good username and password
-    req.logIn(user, function(err)
-    {
-        // are there db errors?
-        if(err)
-        {
-            console.error(err);
-            res.end(err);
-        }
+               return res.json({ success: false, message: "Error: Authentification failed" });
+           }
 
-       const authToken = GenerateToken(user);
-       
-   
-        return res.json({success: true, message: "Logged In Succesffuly", user: {
-            id : user._id,
-            username: user.username,
-            DisplayName: user.DisplayName,
-            EmailAddress: user.EmailAddress
-        }, token: authToken})
-        
-    });
+           // no problems - we have a good username and password
+           req.logIn(user, function (err) {
+               // are there db errors?
+               if (err) {
+                   console.error(err);
+                   res.end(err);
+               }
 
-   })(req, res, next);
+               const authToken = GenerateToken(user);
+
+
+               return res.json({
+                   success: true, message: "Logged In Succesffuly", user: {
+                       id: user._id,
+                       username: user.username,
+                       DisplayName: user.DisplayName,
+                       EmailAddress: user.EmailAddress
+                   }, token: authToken
+               });
+
+           });
+
+       })(req, res, next);
 }
  
 export function ProcessRegisterPage(req: express.Request, res: express.Response, next: express.NextFunction)

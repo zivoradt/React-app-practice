@@ -78,7 +78,7 @@ let jwtOption = {
 let strategy = new JWTStrategy(jwtOption, function (jwt_payload, done) {
     user_1.default.findById(jwt_payload.id)
         .then(user => {
-        return done(user);
+        return done(null, user);
     })
         .catch(err => {
         return done(err, false);

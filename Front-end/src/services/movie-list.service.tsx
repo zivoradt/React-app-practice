@@ -7,7 +7,8 @@ class MovieListDataService
     readAll()
     {
         
-        return http.get<Array<MovieModel>>("/movie-list", AuthHeader());
+        return http.get<Array<MovieModel>>("/movie-list", AuthHeader())
+        
     }
 
     

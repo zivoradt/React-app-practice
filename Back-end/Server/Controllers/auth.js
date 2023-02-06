@@ -8,7 +8,7 @@ const passport_1 = __importDefault(require("passport"));
 const user_1 = __importDefault(require("../Models/user"));
 const Util_1 = require("../Util");
 function ProcessLoginPage(req, res, next) {
-    passport_1.default.authenticate('local', function (err, user, info) {
+    passport_1.default.authenticate('local', function (err, user) {
         if (err) {
             console.error(err);
             res.end(err);
@@ -22,12 +22,14 @@ function ProcessLoginPage(req, res, next) {
                 res.end(err);
             }
             const authToken = (0, Util_1.GenerateToken)(user);
-            return res.json({ success: true, message: "Logged In Succesffuly", user: {
+            return res.json({
+                success: true, message: "Logged In Succesffuly", user: {
                     id: user._id,
                     username: user.username,
                     DisplayName: user.DisplayName,
                     EmailAddress: user.EmailAddress
-                }, token: authToken });
+                }, token: authToken
+            });
         });
     })(req, res, next);
 }

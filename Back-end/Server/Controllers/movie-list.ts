@@ -1,6 +1,5 @@
 import express from 'express';
 import { CallbackError } from 'mongoose';
-import { userInfo } from 'os';
 
 import Movie from '../Models/movie';
 

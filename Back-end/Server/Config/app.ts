@@ -86,12 +86,12 @@ let jwtOption = {
 let strategy = new JWTStrategy(jwtOption, function(jwt_payload, done){
 
   User.findById(jwt_payload.id)
-  .then(user=>{
-    return done(user)
-  })
-  .catch(err =>{
-    return done(err, false);
-  })
+    .then(user => {
+      return done(null, user as any);
+    })
+    .catch(err => {
+      return done(err, false);
+    });
 })
 
 passport.use(strategy);
