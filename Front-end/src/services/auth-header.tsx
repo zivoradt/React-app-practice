@@ -12,7 +12,7 @@ export default function AuthHeader()
 
      if(user && user.token)
      {
-        return {headers: {"Authorization": "Bearer" + user.token}};
+        return {headers: {"Authorization": "Bearer " + user.token}};
      }
      else
      {

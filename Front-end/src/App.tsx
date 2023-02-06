@@ -14,6 +14,7 @@ import Contact from "./content/contact";
 import PageNotFound from "./content/PageNotFound";
 
 // Authentification components
+import MovieList from "./movie-list/movie-list";
 import Login from "./authentification/login";
 import Logout from "./authentification/logout";
 import Register from "./authentification/register";
@@ -22,6 +23,7 @@ import Register from "./authentification/register";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./App.css";
+
 
 
 
@@ -43,6 +45,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/movie-list" element={<MovieList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />

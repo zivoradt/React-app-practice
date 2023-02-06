@@ -9,6 +9,8 @@ class MovieListDataService
         
         return http.get<Array<MovieModel>>("/movie-list", AuthHeader());
     }
+
+    
 }
 
-export default MovieListDataService;
+export default new MovieListDataService();
