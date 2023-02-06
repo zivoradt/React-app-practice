@@ -57,7 +57,7 @@ function Login()
             if(data.success)
           {  
             // Navigate to the movie-list page
-            navigate("/home");   // same as res.redirect on backend
+            navigate("/movie-list");   // same as res.redirect on backend
             window.location.reload();
         }
         else

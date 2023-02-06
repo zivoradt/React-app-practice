@@ -18,6 +18,7 @@ import MovieList from "./movie-list/movie-list";
 import Login from "./authentification/login";
 import Logout from "./authentification/logout";
 import Register from "./authentification/register";
+import AuthGuard from "./authentification/autghuard";
 
 // Styles and fonts
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,9 +29,9 @@ import "./App.css";
 
 
 
+
 function App() {
 
-  
 
   return (
     <div className="App">
@@ -45,7 +46,7 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/movie-list" element={<MovieList />} />
+          <Route path="/movie-list" element={<AuthGuard><MovieList/></AuthGuard>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
