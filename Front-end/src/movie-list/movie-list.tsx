@@ -72,7 +72,7 @@ function MovieList() {
                       <td>{movie.Rating}</td>
                       <td className="text-center">
                         <Link
-                          to={"/edit/${movie._id}"}
+                          to={`/edit/${movie._id}`}
                           className="btn btn-primary btn-sm edit"
                         >
                           <i className="fa-solid fa-pen-to-square"> Edit</i>

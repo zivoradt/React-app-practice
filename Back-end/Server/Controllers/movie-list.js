@@ -17,10 +17,10 @@ function DisplayMovieList(req, res, next) {
 exports.DisplayMovieList = DisplayMovieList;
 function ProccessAddPage(req, res, next) {
     let newMovie = new movie_1.default({
-        "Name": req.body.movieName,
-        "Director": req.body.movieDirector,
-        "Year": req.body.movieYear,
-        "Rating": req.body.movieRating
+        "Name": req.body.Name,
+        "Director": req.body.Director,
+        "Year": req.body.Year,
+        "Rating": req.body.Rating
     });
     movie_1.default.create(newMovie, function (err) {
         if (err) {
@@ -49,10 +49,10 @@ exports.DisplayEditPage = DisplayEditPage;
 function ProccessEditPage(req, res, next) {
     let id = req.params.id;
     let updateMovie = new movie_1.default({
-        "Name": req.body.movieName,
-        "Director": req.body.movieDirector,
-        "Year": req.body.movieYear,
-        "Rating": req.body.movieRating
+        "Name": req.body.Name,
+        "Director": req.body.Director,
+        "Year": req.body.Year,
+        "Rating": req.body.Rating
     });
     movie_1.default.updateOne({ _id: id }, updateMovie, function (err) {
         if (err) {

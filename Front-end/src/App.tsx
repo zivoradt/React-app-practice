@@ -18,6 +18,7 @@ import MovieList from "./movie-list/movie-list";
 import Login from "./authentification/login";
 import Logout from "./authentification/logout";
 import Register from "./authentification/register";
+import Add from "./movie-list/add";
 import AuthGuard from "./authentification/autghuard";
 
 // Styles and fonts
@@ -47,6 +48,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/movie-list" element={<AuthGuard><MovieList/></AuthGuard>} />
+          <Route path="/add" element={<AuthGuard><Add/></AuthGuard>} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />

@@ -22,10 +22,10 @@ export function DisplayMovieList(req: express.Request, res: express.Response, ne
 export function ProccessAddPage(req: express.Request, res: express.Response, next: express.NextFunction)
 {
     let newMovie = new Movie({
-        "Name" : req.body.movieName,
-        "Director": req.body.movieDirector,
-        "Year": req.body.movieYear,
-        "Rating": req.body.movieRating
+        "Name" : req.body.Name,
+        "Director": req.body.Director,
+        "Year": req.body.Year,
+        "Rating": req.body.Rating
 
     });
 
@@ -68,10 +68,10 @@ export function ProccessEditPage(req: express.Request, res: express.Response, ne
     let id = req.params.id;
 
     let updateMovie = new Movie({
-        "Name" : req.body.movieName,
-        "Director": req.body.movieDirector,
-        "Year": req.body.movieYear,
-        "Rating": req.body.movieRating
+        "Name" : req.body.Name,
+        "Director": req.body.Director,
+        "Year": req.body.Year,
+        "Rating": req.body.Rating
 
     });
 
