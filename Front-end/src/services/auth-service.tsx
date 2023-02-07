@@ -1,40 +1,41 @@
-import http from "../components/http-common";
+import http from '../components/http-common';
 
-class AuthServices
+class AuthService
 {
     public login(username: string, password: string)
-        {
-            return http.post('/login', {username, password})
-            .then(response =>{
-                if(response.data.token)
-                {
-                    localStorage.setItem("user", JSON.stringify(response.data));
-                }
-                return response.data;
-            });
-        }
-    
+    {
+        return http.post('/login', {username, password})
+        .then(response => {
+            if(response.data.token)
+            {
+                localStorage.setItem("user", JSON.stringify(response.data));
+            }
+            return response.data;
+        })
+    }
+
     public logout()
     {
         localStorage.removeItem("user");
     }
 
-    public register(username:string, password:string, firstName: string, lastName: string, emailAddress:string)
+    public register(username: string, password: string, firstName: string, lastName: string, emailAddress: string)
     {
         return http.post('/register', {username, password, firstName, lastName, emailAddress})
-        .then(response =>{
+        .then(response => {
             return response.data;
-        })
+        });
     }
 
     getCurrentUser()
     {
         const userString = localStorage.getItem("user") as string;
-        if (userString) {
+        if(userString)
+        {
             return JSON.parse(userString);
         }
         return false;
     }
 }
 
-export default new AuthServices();
+export default new AuthService();

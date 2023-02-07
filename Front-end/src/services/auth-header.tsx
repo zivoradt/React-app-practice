@@ -1,21 +1,20 @@
-import ts from "typescript";
-
 export default function AuthHeader()
 {
-     const userString = localStorage.getItem("user");
-     let user = null;
+    const userString = localStorage.getItem("user");
+    let user = null;
 
-     if(userString)
-     {
+    if(userString)
+    {
         user = JSON.parse(userString);
-     }
+    }
 
-     if(user && user.token)
-     {
-        return {headers: {"Authorization": "Bearer " + user.token}};
-     }
-     else
-     {
+    if(user && user.token)
+    {
+        return { headers: {"Authorization": "Bearer " + user.token }};
+    }
+    else
+    {
         return {};
-     }
+    }
+   
 }

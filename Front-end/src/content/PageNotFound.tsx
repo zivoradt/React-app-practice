@@ -1,15 +1,18 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 
-
-function pageNotFound()
+function PageNotFound()
 {
-   
-    return(
-        <div className='container'>
-            <h1 className='mb-5'>Error: 404 - Page not found</h1>
-            
+    useEffect(()=>{
+        document.title = "ERROR: 404";
+    }, []);
+
+    return (
+        <div className="container">
+            <h1>Oops, the page you requested does not exist.</h1>
+            <hr />
+            <h2>ERROR: 404 - Page not found!</h2> 
         </div>
-    )
+    );
 }
 
-export default pageNotFound;
+export default PageNotFound;

@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react';
-
+import React, { useEffect } from 'react';
 
 function Projects()
 {
     useEffect(()=>{
-        document.title = "Projects";
-    });
-    return(
-        <div className='container'>
-            <h1 className='mb-5'>Projects Us</h1>
-            <hr/>
-            <p>Here is detail Projects us</p>
+        document.title = "Our Projects";
+    }, []);
+
+    return (
+        <div className="container">
+            <h1>Our Projects</h1>
+            <hr />
+            <p>Detail about Our Projects...</p> 
         </div>
-    )
+    );
 }
 
 export default Projects;

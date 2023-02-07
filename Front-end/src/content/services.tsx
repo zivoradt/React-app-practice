@@ -1,18 +1,18 @@
-import React, {useEffect} from 'react';
-
+import React, { useEffect } from 'react';
 
 function Services()
 {
     useEffect(()=>{
-        document.title = "Services";
-    });
-    return(
-        <div className='container'>
-            <h1 className='mb-5'>Services</h1>
-            <hr/>
-            <p>Here is detail about us</p>
+        document.title = "Our Services";
+    }, []);
+
+    return (
+        <div className="container">
+            <h1>Our Services</h1>
+            <hr />
+            <p>Detail about Our Services...</p> 
         </div>
-    )
+    );
 }
 
 export default Services;
