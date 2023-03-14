@@ -17,7 +17,9 @@ import PageNotFound from './content/PageNotFound';
 import Login from './authentication/login';
 import Logout from './authentication/logout';
 import Register from './authentication/register';
+import EditMovie from './movie-list/edit';
 import AuthGuard from './authentication/authguard';
+
 
 // Movie-List Components
 import MovieList from './movie-list/movie-list';
@@ -27,6 +29,7 @@ import AddMovie from './movie-list/add';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
+
 
 
 
@@ -49,6 +52,7 @@ function App()
 
           <Route path="/movie-list" element={ <AuthGuard><MovieList /></AuthGuard> } />
           <Route path="/add" element={ <AuthGuard><AddMovie /></AuthGuard> } />
+          <Route path="/edit/:id" element={ <AuthGuard><EditMovie /></AuthGuard> } />
 
           <Route path="/login" element={ <Login />}  />
           <Route path="/register" element={ <Register />}  />

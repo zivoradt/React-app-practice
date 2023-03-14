@@ -4,5 +4,5 @@ exports.Secret = exports.HostName = exports.RemoteURI = exports.LocalURI = void 
 exports.LocalURI = "mongodb://127.0.0.1/media";
 exports.RemoteURI = process.env.RemoteURI;
 exports.HostName = "MongoDB Atlas";
-exports.Secret = "someSecret";
+exports.Secret = "someSecrets";
 //# sourceMappingURL=db.js.map
